@@ -8,51 +8,68 @@ load_dotenv()
 
 
 # 1) Connect to the database with SQLAlchemy
-# Connect to SQLite database
-engine = create_engine('sqlite:///students.db', echo=False)
+def connect():
+    global engine
+    try:
+        connection_string = (
+            f"postgresql://{os.getenv('DB_USER')}:"
+            f"{os.getenv('DB_PASSWORD')}@"
+            f"{os.getenv('DB_HOST')}:"
+            f"{os.getenv('DB_PORT')}/"
+            f"{os.getenv('DB_NAME')}"
+        )
+        engine = create_engine(connection_string, isolation_level="AUTOCOMMIT")
+        engine.connect()
+        print("Connected successfully!")
+        return engine
+    except Exception as e:
+        print(f"Error connecting to the database: {e}")
+        return None
 
+connect()
 
 # 2) Create the tables
 
-# Metadata object to hold schema
-metadata = MetaData()
+def execute_sql_file(filename: str):
+    """
+    Executes SQL commands from a .sql file using the global SQLAlchemy engine.
+    Assumes that `connect()` has already defined the engine and connected to the DB.
+    """
+    try:
+        # Ensure the engine is connected
+        engine = connect()
+        if engine is None:
+            print("No database connection available.")
+            return
 
-# Define the students table
-students = Table(
-    'students',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String),
-    Column('age', Integer),
-    Column('grade', String)
-)
+        # Read SQL file
+        with open(filename, 'r') as file:
+            sql_script = file.read()
 
-# Create the table in the database
-metadata.create_all(engine)
+        # Split SQL script into individual statements
+        # This simplistic splitter may need adjustment for more complex scripts
+        statements = [stmt.strip() for stmt in sql_script.split(';') if stmt.strip()]
 
+        with engine.connect() as connection:
+            for statement in statements:
+                print(f"Executing:\n{statement}")
+                connection.execute(text(statement))
+
+        print("SQL script executed successfully.")
+
+    except Exception as e:
+        print(f"Error executing SQL script: {e}")
+
+execute_sql_file(".src/sql/create.sql")
 
 # 3) Insert data
 
-with engine.connect() as conn:
-    with conn.begin():  # <-- this will commit automatically
-        conn.execute(
-            students.insert(),
-            [
-                {"name": "John Doe", "age": 20, "grade": "A"},
-                {"name": "Jane Smith", "age": 21, "grade": "B"},
-                {"name": "Alice Johnson", "age": 22, "grade": "A"},
-                {"name": "Bob Brown", "age": 19, "grade": "C"},
-                {"name": "Charlie Davis", "age": 23, "grade": "B"},
-            ]
-        )
-
-print("Database created and data inserted successfully!")
-
+execute_sql_file(".src/sql/insert.sql")
 
 # 4) Use Pandas to read and display a table
 
 # Define SQL Query
-sql_query = text("SELECT * FROM students")
+sql_query = text("SELECT * FROM publishers")
 
 # Load directly into DataFrame
 with engine.connect() as conn:
