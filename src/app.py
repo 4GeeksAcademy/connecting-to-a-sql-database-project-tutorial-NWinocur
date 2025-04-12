@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String, 
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override = True)
 
 
 # 1) Connect to the database with SQLAlchemy
@@ -60,11 +60,11 @@ def execute_sql_file(filename: str):
     except Exception as e:
         print(f"Error executing SQL script: {e}")
 
-execute_sql_file(".src/sql/create.sql")
+execute_sql_file("./src/sql/create.sql")
 
 # 3) Insert data
 
-execute_sql_file(".src/sql/insert.sql")
+execute_sql_file("./src/sql/insert.sql")
 
 # 4) Use Pandas to read and display a table
 

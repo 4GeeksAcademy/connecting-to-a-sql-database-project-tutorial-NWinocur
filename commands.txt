@@ -1,0 +1,42 @@
+    1  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+    2  exit
+    3  exit
+    4  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+    5  exit
+    6  psql
+    7  exit
+    8  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+    9  clear
+   10  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   11  exit
+   12  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   13  exit
+   14  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   15  exit
+   16  psql -U postgres -c "CREATE USER tu_usario;"
+   17  psql -U postgres -c "CREATE USER tu_usario2;"
+   18  exit
+   19  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   20  psql -h localhost -u postgres
+   21  psql -h localhost -U postgres
+   22  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   23  psql -U postgres -d nombre_de_tu_base
+   24  psql -U postgres
+   25  psql --version
+   26  sudo service postgres start
+   27  sudo service postgresql start
+   28  psql -U postgres -c "CREATE USER tu_usario2 WITH PASSWORD 'tu_password';"
+   29  psql -U postgres -c "CREATE USER tu_usario3 WITH PASSWORD 'tu_password';"
+   30  psql -U postgres -c "CREATE DATABASE nombre_de_tu_base OWNER tu_usario3;"
+   31  psql -U postgres -c "CREATE DATABASE some_new_database  OWNER tu_usario3;"
+   32  psql -h localhost -U tu_usario3 some_new_database
+   33  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   34  PSQL -u POSTGRES -C "\|"
+   35  PSQL -u postgres -c "\|"
+   36  psql -u postgres -c "\|"
+   37  psql -U postgres -c "\|"
+   38  psql -U postgres -c "\l"
+   39  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   40  psql -U postgres -c "\l"
+   41  /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/.venv/bin/python /workspaces/connecting-to-a-sql-database-project-tutorial-NWinocur/src/app.py
+   42  history > commands.txt
